@@ -30,7 +30,6 @@ namespace Rebilly
         public const string CANCEL_NOW = "NOW_WITHOUT_REFUND";
         public const string CANCEL_NOW_WITH_PRORATA_REFUND = "NOW_WITH_PRORATA_REFUND";
         public const string CANCEL_NOW_FULL_REFUND = "NOW_WITH_FULL_REFUND";
-        public const string CANCEL_NOW_ALL_REFUND = "NOW_WITH_ALL_CHARGES_REFUND";
 
         public RebillyResponse createMeteredBilling()
         {

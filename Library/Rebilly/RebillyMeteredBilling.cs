@@ -10,9 +10,7 @@ using Newtonsoft.Json;
 namespace Rebilly
 {
     public class RebillyMeteredBilling : RebillyRequest
-    {
-        public const string METERED_BILLING_URL = "meteredBilling/";
-        
+    {   
         public string itemId = null;
 
         public string type = null;
@@ -22,12 +20,5 @@ namespace Rebilly
         public string quantity = null;
 
         public string description = null;
-
-        public RebillyResponse retrieve()
-        {
-            this.setApiController(METERED_BILLING_URL + itemId);
-
-            return this.sendGetRequest();
-        }
     }
 }

@@ -11,6 +11,26 @@ namespace Rebilly
 {
     public class RebillySubscription : RebillyRequest
     {
+        /// <summary>
+        /// Subscription's URL endpoint
+        /// </summary>
+        public const string SUBSCRIPTION_URL = "subscriptions/";
+
+        /**
+         * Subscriptions change types
+         */
+        public const string SWITCH_AT_NEXT_REBILL = "AT_NEXT_REBILL";
+        public const string SWITCH_NOW_WITH_PRORATA_REFUND = "NOW_WITH_PRORATA_REFUND";
+        public const string SWITCH_NOW_WITHOUT_REFUND = "NOW_WITHOUT_REFUND";
+
+        /***
+         * Subscriptions cancellation types
+         */
+        public const string CANCEL_AT_NEXT_REBILL = "AT_NEXT_REBILL";
+        public const string CANCEL_NOW = "NOW_WITHOUT_REFUND";
+        public const string CANCEL_NOW_WITH_PRORATA_REFUND = "NOW_WITH_PRORATA_REFUND";
+        public const string CANCEL_NOW_FULL_REFUND = "NOW_WITH_FULL_REFUND";
+
         public string subscriptionId = null;
         public string lookupSubscriptionId = null;
         public string websiteId = null;
@@ -18,22 +38,15 @@ namespace Rebilly
         public string switchWhen = null;
         public string cancelBehaviour = null;
         public string quantity = null;
-        public RebillyAddressInfo deliveryAddress = null;
         public string rebillTime = null;
+        public string processorAccountId = null;
+        public RebillyAddressInfo deliveryAddress = null;
+        public RebillyThreeDSecure threeDSecure = null;
         public List<RebillyMeteredBilling> meteredBilling = null;
-        
-        public const string SWITCH_AT_NEXT_REBILL = "AT_NEXT_REBILL";
-        public const string SWITCH_NOW_WITH_PRORATA_REFUND = "NOW_WITH_PRORATA_REFUND";
-        public const string SWITCH_NOW_WITHOUT_REFUND = "NOW_WITHOUT_REFUND";
 
-        public const string CANCEL_AT_NEXT_REBILL = "AT_NEXT_REBILL";
-        public const string CANCEL_NOW = "NOW_WITHOUT_REFUND";
-        public const string CANCEL_NOW_WITH_PRORATA_REFUND = "NOW_WITH_PRORATA_REFUND";
-        public const string CANCEL_NOW_FULL_REFUND = "NOW_WITH_FULL_REFUND";
-
-        public RebillyResponse createMeteredBilling()
+        public RebillyResponse create()
         {
-            this.setApiController(RebillyMeteredBilling.METERED_BILLING_URL);
+            this.setApiController(SUBSCRIPTION_URL);
             string data = this.buildRequest(this);
 
             return this.sendPostRequest(data);

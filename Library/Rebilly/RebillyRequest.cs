@@ -194,7 +194,7 @@ namespace Rebilly
                 result = streamReader.ReadToEnd();
             }
 
-            return new RebillyResponse(result);
+            return new RebillyResponse(result, response.StatusCode);
         }
     }
 }

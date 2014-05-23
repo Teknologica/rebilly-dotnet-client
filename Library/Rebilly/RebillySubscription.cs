@@ -42,7 +42,6 @@ namespace Rebilly
         public string processorAccountId = null;
         public RebillyAddressInfo deliveryAddress = null;
         public RebillyThreeDSecure threeDSecure = null;
-        public List<RebillyMeteredBilling> meteredBilling = null;
 
         public RebillyResponse create()
         {

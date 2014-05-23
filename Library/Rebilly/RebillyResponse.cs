@@ -45,6 +45,7 @@ namespace Rebilly
         public const string TOKEN_CREATE = "TOKEN_CREATE";
         public const string PLAN_CREATE = "PLAN_CREATE";
         public const string PLAN_DELETE = "PLAN_DELETE";
+        public const string INVOICE_ITEM_CREATE = "INVOICE_ITEM_CREATE";
 
         /// <summary>
         /// raw response

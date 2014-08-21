@@ -14,12 +14,20 @@ namespace Rebilly
         public string lookupTransactionId = null;
         public string amount = null;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id"> transaction id</param>
         public RebillyTransaction(string id)
         {
             this.lookupTransactionId = id;
             this.setApiController("transactions");
         }
 
+        /// <summary>
+        /// Refund a transaction
+        /// </summary>
+        /// <returns> RebillyResponse </returns>
         public RebillyResponse refund()
         {
             string data = this.buildRequest(this);

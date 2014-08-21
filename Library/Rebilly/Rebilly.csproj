@@ -48,12 +48,14 @@
     <Compile Include="RebillyCharge.cs" />
     <Compile Include="RebillyCustomer.cs" />
     <Compile Include="RebillyDispute.cs" />
-    <Compile Include="RebillyMeteredBilling.cs" />
+    <Compile Include="RebillyInvoiceItem.cs" />
     <Compile Include="RebillyPaymentCard.cs" />
     <Compile Include="RebillyPlan.cs" />
     <Compile Include="RebillyRequest.cs" />
     <Compile Include="RebillyResponse.cs" />
     <Compile Include="RebillySubscription.cs" />
+    <Compile Include="RebillyThreeDSecure.cs" />
+    <Compile Include="RebillyToken.cs" />
     <Compile Include="RebillyTransaction.cs" />
   </ItemGroup>
   <ItemGroup>

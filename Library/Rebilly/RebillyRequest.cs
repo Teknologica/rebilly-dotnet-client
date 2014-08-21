@@ -12,15 +12,22 @@ namespace Rebilly
     public class RebillyRequest
     {
         private string apiUrl;
-        public const string ENV_DEVELOPMENT = "development";
+        
+        /// <summary>
+        /// ENV_STAGING and ENV_PRODUCTION are deprecated
+        /// </summary>
         public const string ENV_STAGING = "staging";
         public const string ENV_PRODUCTION = "production";
+        
+        public const string ENV_LIVE = "live";
+        public const string ENV_SANDBOX = "sandbox";
 
         Dictionary<string, string> urls = new Dictionary<string, string>()
         {
-	        {ENV_DEVELOPMENT, "http://api.dev-local.rebilly.com/v2/"},
 	        {ENV_STAGING, "http://apix.rebilly.com/v2/"},
 	        {ENV_PRODUCTION, "https://api.rebilly.com/v2/"},
+            {ENV_LIVE, "https://api.rebilly.com/v2/"},
+            {ENV_SANDBOX, "https://api-sandbox.rebilly.com/v2/"},
         };
 
         /// <summary>
@@ -52,6 +59,10 @@ namespace Rebilly
         /// </summary>
         const string METHOD_DELETE = "DELETE";
 
+        /// <summary>
+        /// Get api url
+        /// </summary>
+        /// <returns> API URL </returns>
         public String getApiUrl()
         {
             return this.apiUrl;
@@ -194,7 +205,7 @@ namespace Rebilly
                 result = streamReader.ReadToEnd();
             }
 
-            return new RebillyResponse(result);
+            return new RebillyResponse(result, response.StatusCode);
         }
     }
 }

@@ -13,6 +13,40 @@ namespace Rebilly
 {
     public class RebillyResponse
     {
+        /**
+        * API's response status
+        */
+        public const string STATUS_SUCCESS = "Success";
+        public const string STATUS_FAIL = "Failure";
+        public const string STATUS_VALID = "Valid";
+        public const string STATUS_PRECONDITION = "Precondition failed";
+
+        /**
+        * API"s response action
+        */
+        public const string CUSTOMER_LOOKUP = "CUSTOMER_LOOKUP";
+        public const string CUSTOMER_CREATE = "CUSTOMER_CREATE";
+        public const string CUSTOMER_UPDATE = "CUSTOMER_UPDATE";
+        public const string SUBSCRIPTION_LOOKUP = "SUBSCRIPTION_LOOKUP";
+        public const string SUBSCRIPTION_CANCEL = "SUBSCRIPTION_CANCEL";
+        public const string SUBSCRIPTION_CREATE = "SUBSCRIPTION_CREATE";
+        public const string SUBSCRIPTION_UPDATE = "SUBSCRIPTION_UPDATE";
+        public const string SUBSCRIPTION_SWITCH = "SUBSCRIPTION_SWITCH";
+        public const string DISPUTE_ENTRY_CREATE = "DISPUTE_ENTRY_CREATE";
+        public const string PAYMENT_CARD_CREATE = "PAYMENT_CARD_CREATE";
+        public const string PAYMENT_CARD_UPDATE = "PAYMENT_CARD_UPDATE";
+        public const string PAYMENT_CARD_LOOKUP = "PAYMENT_CARD_LOOKUP";
+        public const string AUTHORIZE_PAYMENT_CARD = "AUTHORIZE_PAYMENT_CARD";
+        public const string PAYMENT_CARD_CHARGE = "PAYMENT_CARD_CHARGE";
+        public const string THREE_D_SECURE_CREATE = "THREE_D_SECURE_CREATE";
+        public const string METERED_BILLING_CREATE = "METERED_BILLING_CREATE";
+        public const string BLACKLIST_ENTRY_CREATE = "BLACKLIST_ENTRY_CREATE";
+        public const string BLACKLIST_ENTRY_DELETE = "BLACKLIST_ENTRY_DELETE";
+        public const string TOKEN_CREATE = "TOKEN_CREATE";
+        public const string PLAN_CREATE = "PLAN_CREATE";
+        public const string PLAN_DELETE = "PLAN_DELETE";
+        public const string INVOICE_ITEM_CREATE = "INVOICE_ITEM_CREATE";
+
         /// <summary>
         /// raw response
         /// </summary>
@@ -29,16 +63,19 @@ namespace Rebilly
         /// all transactions
         /// </summary>
         private ArrayList transactions = null;
-        
+
+        public HttpStatusCode statusCode;
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="response"></param>
-        public RebillyResponse(string response)
+        public RebillyResponse(string response, HttpStatusCode code = 0)
         {
             errors = new ArrayList();
             warnings = new ArrayList();
             this.response = response;
+            this.statusCode = code;
             this.processResponse(response);
         }
 
@@ -94,11 +131,11 @@ namespace Rebilly
         }
 
         /// <summary>
-        /// Return raw response from Rebilly in JSON
+        /// Return raw response from Rebilly
         /// </summary>
-        public string getResponse()
+        public dynamic getRawResponse()
         {
-            return response;
+            return JObject.Parse(response);
         }
 
         /// <summary>
@@ -116,7 +153,7 @@ namespace Rebilly
         /// <returns> boolean </returns>
         public bool hasWarnings()
         {
-            return (warnings != null && warnings.Count > 0); 
+            return (warnings != null && warnings.Count > 0);
         }
 
         /// <summary>
@@ -125,7 +162,7 @@ namespace Rebilly
         /// <returns> boolean </returns>
         public bool hasTransaction()
         {
-            return (transactions != null && transactions.Count > 0); 
+            return (transactions != null && transactions.Count > 0);
         }
     }
 }

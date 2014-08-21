@@ -55,6 +55,7 @@
     <Compile Include="RebillyResponse.cs" />
     <Compile Include="RebillySubscription.cs" />
     <Compile Include="RebillyThreeDSecure.cs" />
+    <Compile Include="RebillyToken.cs" />
     <Compile Include="RebillyTransaction.cs" />
   </ItemGroup>
   <ItemGroup>

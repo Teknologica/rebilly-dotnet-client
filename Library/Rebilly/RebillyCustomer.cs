@@ -47,6 +47,10 @@ namespace Rebilly
         /// Subscription related to a customer (use when switching from one subscription to a new one)
         /// </summary>
         public RebillySubscription newSubscription = null;
+        /// <summary>
+        /// Custom Fields
+        /// </summary>
+        public List<RebillyCustomField> customField = null;
 
         public const string CUSTOMER_URL = "customers/";
 

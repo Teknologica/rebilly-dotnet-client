@@ -47,6 +47,7 @@
     <Compile Include="RebillyBlacklist.cs" />
     <Compile Include="RebillyCharge.cs" />
     <Compile Include="RebillyCustomer.cs" />
+    <Compile Include="RebillyCustomField.cs" />
     <Compile Include="RebillyDispute.cs" />
     <Compile Include="RebillyInvoiceItem.cs" />
     <Compile Include="RebillyPaymentCard.cs" />

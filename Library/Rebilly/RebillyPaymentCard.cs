@@ -32,6 +32,10 @@ namespace Rebilly
         /// </summary>
         public string cvv = null;
         /// <summary>
+        /// Unique one-time-use token to use in lieu of card
+        /// </summary>
+        public string token = null;
+        /// <summary>
         /// subscription
         /// </summary>
         public RebillySubscription subscription = null;
@@ -47,6 +51,10 @@ namespace Rebilly
         /// billing address related to card
         /// </summary>
         public RebillyAddressInfo billingAddress = null;
+        /// <summary>
+        /// Custom Fields
+        /// </summary>
+        public List<RebillyCustomField> customField = null;
 
         public RebillyPaymentCard(string last4 = null)
         {

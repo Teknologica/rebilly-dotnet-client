@@ -31,5 +31,9 @@ namespace Rebilly
         /// delivery address for charge
         /// </summary>
         public RebillyAddressInfo deliveryAddress = null;
+        /// <summary>
+        /// Custom Fields
+        /// </summary>
+        public List<RebillyCustomField> customField = null;
     }
 }

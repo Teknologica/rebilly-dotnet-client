@@ -42,6 +42,7 @@ namespace Rebilly
         public string processorAccountId = null;
         public RebillyAddressInfo deliveryAddress = null;
         public RebillyThreeDSecure threeDSecure = null;
+        public List<RebillyCustomField> customField = null;
 
         public RebillyResponse create()
         {

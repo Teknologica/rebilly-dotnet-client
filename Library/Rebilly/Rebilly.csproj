@@ -50,6 +50,7 @@
     <Compile Include="RebillyCustomField.cs" />
     <Compile Include="RebillyDispute.cs" />
     <Compile Include="RebillyInvoiceItem.cs" />
+    <Compile Include="RebillyLayout.cs" />
     <Compile Include="RebillyPaymentCard.cs" />
     <Compile Include="RebillyPlan.cs" />
     <Compile Include="RebillyRequest.cs" />

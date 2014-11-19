@@ -11,14 +11,15 @@ namespace Rebilly
 {
     public class RebillyPlan : RebillyRequest
     {
+        public const string PLAN_URL = "plans/";
         /// <summary>
-        /// string planId
+        /// string id
         /// </summary>
-        public string planId = null;
+        private string id = null;
         /// <summary>
-        /// string lookupPlanId
+        /// bool isActive
         /// </summary>
-        public string lookupPlanId = null;
+        public bool isActive = true;
         /// <summary>
         /// string name
         /// </summary>
@@ -32,25 +33,17 @@ namespace Rebilly
         /// </summary>
         public string description = null;
         /// <summary>
-        /// string expireTime
-        /// </summary>
-        public string expireTime = null;
-        /// <summary>
-        /// string setupAmount
-        /// </summary>
-        public string setupAmount = null;
-        /// <summary>
         /// string recurringAmount
         /// </summary>
         public string recurringAmount = null;
         /// <summary>
         /// string recurringIntervalUnit
         /// </summary>
-        public string recurringIntervalUnit = null;
+        public string recurringPeriodUnit = null;
         /// <summary>
         /// string recurringIntervalLength
         /// </summary>
-        public string recurringIntervalLength = null;
+        public string recurringPeriodLength = null;
         /// <summary>
         /// string trialAmount
         /// </summary>
@@ -58,21 +51,31 @@ namespace Rebilly
         /// <summary>
         /// string trialIntervalUnit
         /// </summary>
-        public string trialIntervalUnit = null;
+        public string trialPeriodUnit = null;
         /// <summary>
         /// string trialIntervalLength
         /// </summary>
-        public string trialIntervalLength = null;
+        public string trialPeriodLength = null;
         /// <summary>
-        /// string contractLength
+        /// string setupAmount
         /// </summary>
-        public string contractTerm = null;
+        public string setupAmount = null;
+        /// <summary>
+        /// string expireTime
+        /// </summary>
+        public string expireTime = null;
+        /// <summary>
+        /// string contractTermUnit
+        /// </summary>
+        public string contractTermUnit = null;
+        /// <summary>
+        /// string contractTermLength
+        /// </summary>
+        public string contractTermLength = null;
         /// <summary>
         /// string contractRebill
         /// </summary>
-        public string contractRebill = null;
-
-        public const string PLAN_URL = "plans/";
+        public string recurringPeriodLimit = null;
 
         /// <summary>
         /// Contructor set the right API URL
@@ -82,7 +85,7 @@ namespace Rebilly
         {
             if (!String.IsNullOrEmpty(id))
             {
-                this.lookupPlanId = id;
+                this.id = id;
             }
             this.setApiController(PLAN_URL);
         }
@@ -98,12 +101,21 @@ namespace Rebilly
             return this.sendPostRequest(data);
         }
 
+        public RebillyResponse update()
+        {
+            this.setApiController(PLAN_URL + this.id);
+            string data = this.buildRequest(this);
+
+            return this.sendPutRequest(data);
+        }
+
         /// <summary>
         /// Delete a plan
         /// </summary>
         /// <returns>RebillyResponse</returns>
         public RebillyResponse delete()
         {
+            this.setApiController(PLAN_URL + this.id);
             string data = this.buildRequest(this);
 
             return this.sendDeleteRequest(data);
@@ -115,7 +127,7 @@ namespace Rebilly
         /// <returns>RebillyResponse</returns>
         public RebillyResponse retrieve()
         {
-            this.setApiController(PLAN_URL + this.lookupPlanId);
+            this.setApiController(PLAN_URL + this.id);
 
             return this.sendGetRequest();
         }

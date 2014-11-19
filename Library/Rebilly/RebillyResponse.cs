@@ -135,7 +135,18 @@ namespace Rebilly
         /// </summary>
         public dynamic getRawResponse()
         {
-            return JObject.Parse(response);
+            if (response.StartsWith("{") && response.EndsWith("}"))
+            {
+                return JObject.Parse(response);
+            }
+            else if (response.StartsWith("[") && response.EndsWith("]"))
+            {
+                return JArray.Parse(response);
+            }
+            else
+            {
+                return "";
+            }
         }
 
         /// <summary>

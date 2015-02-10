@@ -24,10 +24,10 @@ namespace Rebilly
 
         Dictionary<string, string> urls = new Dictionary<string, string>()
         {
-	        {ENV_STAGING, "http://apix.rebilly.com/v2/"},
-	        {ENV_PRODUCTION, "https://api.rebilly.com/v2/"},
-            {ENV_LIVE, "https://api.rebilly.com/v2/"},
-            {ENV_SANDBOX, "https://api-sandbox.rebilly.com/v2/"},
+	        {ENV_STAGING, "http://apix.rebilly.com/"},
+	        {ENV_PRODUCTION, "https://api.rebilly.com/"},
+            {ENV_LIVE, "https://api.rebilly.com/"},
+            {ENV_SANDBOX, "https://api-sandbox.rebilly.com/"},
         };
 
         /// <summary>
@@ -42,6 +42,10 @@ namespace Rebilly
         /// Unique API key for each user
         /// </summary>
         private string apiKey;
+        /// <summary>
+        /// Api version
+        /// </summary>
+        private string apiVersion = "v2";
         /// <summary>
         /// Method GET
         /// </summary>
@@ -105,6 +109,15 @@ namespace Rebilly
         }
 
         /// <summary>
+        /// Set version 
+        /// </summary>
+        /// <param name="uri"> uri </param>
+        public void setApiVersion(string version)
+        {
+            this.apiVersion = version;
+        }
+
+        /// <summary>
         /// Send GET request to Rebilly
         /// </summary>
         /// <returns> Response from Rebilly </returns>
@@ -151,12 +164,12 @@ namespace Rebilly
         /// <returns></returns>
         private RebillyResponse sendRequest(string method, string data = null)
         {
-            if (!urls.ContainsKey(this.environment))
+            if (String.IsNullOrEmpty(this.environment) || !urls.ContainsKey(this.environment))
             {
                 throw new Exception("Please set the correct environment.");
             }
 
-            this.apiUrl = urls[this.environment] + this.controller;
+            this.apiUrl = urls[this.environment] + this.apiVersion + "/" + this.controller;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.apiUrl);
             request.Method = method;

@@ -24,8 +24,8 @@ namespace Rebilly
 
         Dictionary<string, string> urls = new Dictionary<string, string>()
         {
-	        {ENV_STAGING, "http://apix.rebilly.com/"},
-	        {ENV_PRODUCTION, "https://api.rebilly.com/"},
+            {ENV_STAGING, "http://apix.rebilly.com/"},
+            {ENV_PRODUCTION, "https://api.rebilly.com/"},
             {ENV_LIVE, "https://api.rebilly.com/"},
             {ENV_SANDBOX, "https://api-sandbox.rebilly.com/"},
         };
@@ -82,9 +82,9 @@ namespace Rebilly
         }
 
         /// <summary>
-        /// Set API key
+        /// Set Environment
         /// </summary>
-        /// <param name="key"> key </param>
+        /// <param name="env"> env </param>
         public void setEnvironment(string env)
         {
             this.environment = env;
@@ -100,9 +100,9 @@ namespace Rebilly
         }
 
         /// <summary>
-        /// Set URI 
+        /// Set controller endpoint 
         /// </summary>
-        /// <param name="uri"> uri </param>
+        /// <param name="controller"> controller </param>
         public void setApiController(string controller)
         {
             this.controller = controller;
@@ -111,7 +111,7 @@ namespace Rebilly
         /// <summary>
         /// Set version 
         /// </summary>
-        /// <param name="uri"> uri </param>
+        /// <param name="version"> version </param>
         public void setApiVersion(string version)
         {
             this.apiVersion = version;

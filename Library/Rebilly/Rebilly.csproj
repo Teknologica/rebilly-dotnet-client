@@ -61,6 +61,7 @@
     <Compile Include="RebillyToken.cs" />
     <Compile Include="RebillyTransaction.cs" />
     <Compile Include="v2_1\Blacklist.cs" />
+    <Compile Include="v2_1\Contact.cs" />
     <Compile Include="v2_1\Customer.cs" />
     <Compile Include="v2_1\Invoice.cs" />
     <Compile Include="v2_1\InvoiceItem.cs" />

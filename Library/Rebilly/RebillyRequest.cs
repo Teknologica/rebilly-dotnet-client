@@ -14,9 +14,8 @@ namespace Rebilly
         private string apiUrl;
         
         /// <summary>
-        /// ENV_STAGING and ENV_PRODUCTION are deprecated
+        /// ENV_PRODUCTION are deprecated
         /// </summary>
-        public const string ENV_STAGING = "staging";
         public const string ENV_PRODUCTION = "production";
         
         public const string ENV_LIVE = "live";

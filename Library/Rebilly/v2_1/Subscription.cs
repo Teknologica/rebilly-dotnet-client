@@ -227,7 +227,7 @@ namespace Rebilly.v2_1
         /// <summary>
         /// Helper function to convert from object to JSON ready to send to Rebilly
         /// </summary>
-        /// <param name="transaction">Transaction object</param>
+        /// <param name="subscription">Subscription object</param>
         /// <returns>data in JSON format</returns>
         private string buildRequest(Subscription subscription)
         {

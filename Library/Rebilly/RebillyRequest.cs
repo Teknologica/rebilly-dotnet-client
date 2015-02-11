@@ -24,7 +24,6 @@ namespace Rebilly
 
         Dictionary<string, string> urls = new Dictionary<string, string>()
         {
-            {ENV_STAGING, "http://apix.rebilly.com/"},
             {ENV_PRODUCTION, "https://api.rebilly.com/"},
             {ENV_LIVE, "https://api.rebilly.com/"},
             {ENV_SANDBOX, "https://api-sandbox.rebilly.com/"},

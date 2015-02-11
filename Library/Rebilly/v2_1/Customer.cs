@@ -29,6 +29,10 @@ namespace Rebilly.v2_1
         /// </summary>
         public string ipAddress = null;
         /// <summary>
+        /// default payment card
+        /// </summary>
+        public string defaultCard = null;
+        /// <summary>
         /// string id
         /// </summary>
         private string id = null;

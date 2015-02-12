@@ -11,7 +11,7 @@ namespace Rebilly
 {
     public class RebillyBlacklist : RebillyRequest
     {
-        public const string BLACKLIST_URL    = "blacklists/";
+        public const string BLACKLIST_URL    = "blacklists";
         public const string TYPE_EMAIL       = "email";
         public const string TYPE_CUSTOMERID  = "customerId";
         public const string TYPE_IPADDRESS   = "ipAddress";
@@ -43,7 +43,7 @@ namespace Rebilly
         /// constructor
         /// </summary>
         /// <param name="type">type of black or gray list</param>
-        public RebillyBlacklist(String type)
+        public RebillyBlacklist(string type)
         {
             this.setApiController(BLACKLIST_URL + type);
         }

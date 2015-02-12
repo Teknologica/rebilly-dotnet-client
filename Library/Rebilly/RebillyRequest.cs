@@ -14,9 +14,8 @@ namespace Rebilly
         private string apiUrl;
         
         /// <summary>
-        /// ENV_STAGING and ENV_PRODUCTION are deprecated
+        /// ENV_PRODUCTION are deprecated
         /// </summary>
-        public const string ENV_STAGING = "staging";
         public const string ENV_PRODUCTION = "production";
         
         public const string ENV_LIVE = "live";
@@ -24,10 +23,9 @@ namespace Rebilly
 
         Dictionary<string, string> urls = new Dictionary<string, string>()
         {
-	        {ENV_STAGING, "http://apix.rebilly.com/v2/"},
-	        {ENV_PRODUCTION, "https://api.rebilly.com/v2/"},
-            {ENV_LIVE, "https://api.rebilly.com/v2/"},
-            {ENV_SANDBOX, "https://api-sandbox.rebilly.com/v2/"},
+            {ENV_PRODUCTION, "https://api.rebilly.com/"},
+            {ENV_LIVE, "https://api.rebilly.com/"},
+            {ENV_SANDBOX, "https://api-sandbox.rebilly.com/"},
         };
 
         /// <summary>
@@ -42,6 +40,10 @@ namespace Rebilly
         /// Unique API key for each user
         /// </summary>
         private string apiKey;
+        /// <summary>
+        /// Api version
+        /// </summary>
+        private string apiVersion = "v2";
         /// <summary>
         /// Method GET
         /// </summary>
@@ -78,9 +80,9 @@ namespace Rebilly
         }
 
         /// <summary>
-        /// Set API key
+        /// Set Environment
         /// </summary>
-        /// <param name="key"> key </param>
+        /// <param name="env"> env </param>
         public void setEnvironment(string env)
         {
             this.environment = env;
@@ -96,12 +98,21 @@ namespace Rebilly
         }
 
         /// <summary>
-        /// Set URI 
+        /// Set controller endpoint 
         /// </summary>
-        /// <param name="uri"> uri </param>
+        /// <param name="controller"> controller </param>
         public void setApiController(string controller)
         {
             this.controller = controller;
+        }
+
+        /// <summary>
+        /// Set version 
+        /// </summary>
+        /// <param name="version"> version </param>
+        public void setApiVersion(string version)
+        {
+            this.apiVersion = version;
         }
 
         /// <summary>
@@ -151,12 +162,12 @@ namespace Rebilly
         /// <returns></returns>
         private RebillyResponse sendRequest(string method, string data = null)
         {
-            if (!urls.ContainsKey(this.environment))
+            if (String.IsNullOrEmpty(this.environment) || !urls.ContainsKey(this.environment))
             {
                 throw new Exception("Please set the correct environment.");
             }
 
-            this.apiUrl = urls[this.environment] + this.controller;
+            this.apiUrl = urls[this.environment] + this.apiVersion + "/" + this.controller;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.apiUrl);
             request.Method = method;

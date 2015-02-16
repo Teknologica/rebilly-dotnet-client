@@ -11,7 +11,8 @@ namespace Rebilly.v2_1
 {
     public class Contact : RebillyRequest
     {
-        const string END_POINT = "contacts/";
+        const string CONTACT_END_POINT = "contacts/";
+
         /** @var  string $firstName */
         public string firstName = null;
         /** @var  string $lastName */
@@ -46,7 +47,7 @@ namespace Rebilly.v2_1
                 this.id = id;
             }
             this.setApiVersion("v2.1");
-            this.setApiController(END_POINT);
+            this.setApiController(CONTACT_END_POINT);
         }
 
         /// <summary>
@@ -59,11 +60,11 @@ namespace Rebilly.v2_1
         ///     contact.setApiKey("your api key");
         ///     contact.setEnvironment(RebillyRequest.ENV_SANDBOX);
         ///     
-        ///     contact.firstName = 'John';
-        ///     contact.lastName = 'Doe';
-        ///     contact.organization = 'Test Org';
-        ///     contact.address = '2020 Rue test';
-        ///     contact.city = 'City';
+        ///     contact.firstName = "John";
+        ///     contact.lastName = "Doe";
+        ///     contact.organization = "Test Org";
+        ///     contact.address = "2020 Rue test";
+        ///     contact.city = "City";
         ///     
         ///     RebillyResponse response = contact.create();
         ///     if (response.statusCode == HttpStatusCode.Created)
@@ -102,8 +103,30 @@ namespace Rebilly.v2_1
             {
                 throw new Exception("contact id cannot be empty.");
             }
-            this.setApiController(END_POINT + this.id);
+            this.setApiController(CONTACT_END_POINT + this.id);
 
+            return this.sendGetRequest();
+        }
+
+        /// <summary>
+        /// Get a contact
+        /// </summary>
+        /// <returns>RebillyResponse</returns>
+        /// <example>
+        /// <code>
+        ///     Rebilly.v2_1.Contact contact = new Rebilly.v2_1.Contact();
+        ///     contact.setApiKey("your api key");
+        ///     contact.setEnvironment(RebillyRequest.ENV_SANDBOX);
+        ///     
+        ///     RebillyResponse response = contact.listAll();
+        ///     if (response.statusCode == HttpStatusCode.OK)
+        ///     {
+        ///         // Successfully created
+        ///     }
+        /// </code>
+        /// </example>
+        public RebillyResponse listAll()
+        {
             return this.sendGetRequest();
         }
 

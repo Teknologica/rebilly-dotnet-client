@@ -225,6 +225,28 @@ namespace Rebilly.v2_1
         }
 
         /// <summary>
+        /// List all subscriptions belong to a customer
+        /// </summary>
+        /// <returns>RebillyResponse</returns>
+        /// <example>
+        /// <code>
+        ///     Rebilly.v2_1.Subscription subscription = new Rebilly.v2_1.Subscription("customerId");
+        ///     subscription.setApiKey("apiKey");
+        ///     subscription.setEnvironment(RebillyRequest.ENV_SANDBOX);
+        ///
+        ///     RebillyResponse response = subscription.listAll();
+        ///     if (response.statusCode == HttpStatusCode.OK) {
+        ///         // Successfully
+        ///     }
+        /// </code>
+        /// </example>
+        public RebillyResponse listAll()
+        {
+            this.setApiController(CUSTOMER_END_POINT + this.customerId + SUBSCRIPTION_END_POINT);
+            return this.sendGetRequest();
+        }
+
+        /// <summary>
         /// Helper function to convert from object to JSON ready to send to Rebilly
         /// </summary>
         /// <param name="subscription">Subscription object</param>

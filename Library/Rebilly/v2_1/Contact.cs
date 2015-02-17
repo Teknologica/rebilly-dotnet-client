@@ -13,27 +13,49 @@ namespace Rebilly.v2_1
     {
         const string CONTACT_END_POINT = "contacts/";
 
-        /** @var  string $firstName */
+        /// <summary>
+        /// firstName
+        /// </summary>
         public string firstName = null;
-        /** @var  string $lastName */
+        /// <summary>
+        /// lastName
+        /// </summary>
         public string lastName = null;
-        /** @var  string $organization */
+        /// <summary>
+        /// organization
+        /// </summary>
         public string organization = null;
-        /** @var  string $address */
+        /// <summary>
+        /// address
+        /// </summary>
         public string address = null;
-        /** @var  string $address2 */
+        /// <summary>
+        /// address2
+        /// </summary>
         public string address2 = null;
-        /** @var  string $city */
+        /// <summary>
+        /// city
+        /// </summary>
         public string city = null;
-        /** @var  string $region */
+        /// <summary>
+        /// region
+        /// </summary>
         public string region = null;
-        /** @var  string $country */
+        /// <summary>
+        /// country
+        /// </summary>
         public string country = null;
-        /** @var  string $phoneNumber */
+        /// <summary>
+        /// phoneNumber
+        /// </summary>
         public string phoneNumber = null;
-        /** @var  string $postalCode */
+        /// <summary>
+        /// postalCode
+        /// </summary>
         public string postalCode = null;
-
+        /// <summary>
+        /// Contact's ID
+        /// </summary>
         private string id = null;
         
         /// <summary>

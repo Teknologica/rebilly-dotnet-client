@@ -45,6 +45,10 @@ namespace Rebilly
         /// </summary>
         private string apiVersion = "v2";
         /// <summary>
+        /// queryParam
+        /// </summary>
+        private Dictionary<string, string> queryParam = null;
+        /// <summary>
         /// Method GET
         /// </summary>
         const string METHOD_GET = "GET";
@@ -116,6 +120,15 @@ namespace Rebilly
         }
 
         /// <summary>
+        /// Set queryParam
+        /// </summary>
+        /// <param name="param"></param>
+        public void setQueryParam(Dictionary<string, string> param)
+        {
+            this.queryParam = param;
+        }
+
+        /// <summary>
         /// Send GET request to Rebilly
         /// </summary>
         /// <returns> Response from Rebilly </returns>
@@ -169,6 +182,10 @@ namespace Rebilly
 
             this.apiUrl = urls[this.environment] + this.apiVersion + "/" + this.controller;
 
+            if (method == METHOD_GET && this.queryParam != null)
+            {
+                this.apiUrl += "?" + Rebilly.helper.HttpBuildQuery.build(this.queryParam);
+            }
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.apiUrl);
             request.Method = method;
             request.ContentType = "application/json; charset=UTF-8";

@@ -81,6 +81,35 @@ namespace Rebilly.v2_1
         }
 
         /// <summary>
+        /// Create a new contact with ID
+        /// </summary>
+        /// <returns>RebillyResponse</returns>
+        /// <example>
+        /// <code>
+        ///     Rebilly.v2_1.Contact contact = new Rebilly.v2_1.Contact("contactId");
+        ///     contact.setApiKey("your api key");
+        ///     contact.setEnvironment(RebillyRequest.ENV_SANDBOX);
+        ///     
+        ///     RebillyResponse response = contact.update();
+        ///     if (response.statusCode == HttpStatusCode.Created)
+        ///     {
+        ///         // Successfully created
+        ///     }
+        /// </code>
+        /// </example>
+        public RebillyResponse update()
+        {
+            if (String.IsNullOrEmpty(this.id))
+            {
+                throw new Exception("contact id cannot be empty.");
+            }
+            this.setApiController(CONTACT_END_POINT + this.id);
+            string data = this.buildRequest(this);
+
+            return this.sendPutRequest(data);
+        }
+
+        /// <summary>
         /// Get a contact
         /// </summary>
         /// <returns>RebillyResponse</returns>
@@ -93,7 +122,7 @@ namespace Rebilly.v2_1
         ///     RebillyResponse response = contact.retrieve();
         ///     if (response.statusCode == HttpStatusCode.OK)
         ///     {
-        ///         // Successfully created
+        ///         // Success
         ///     }
         /// </code>
         /// </example>
@@ -121,7 +150,7 @@ namespace Rebilly.v2_1
         ///     RebillyResponse response = contact.listAll();
         ///     if (response.statusCode == HttpStatusCode.OK)
         ///     {
-        ///         // Successfully created
+        ///         // Success
         ///     }
         /// </code>
         /// </example>

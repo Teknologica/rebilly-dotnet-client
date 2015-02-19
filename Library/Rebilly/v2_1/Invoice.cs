@@ -11,7 +11,7 @@ namespace Rebilly.v2_1
 {
     public class Invoice : RebillyRequest
     {
-         const string END_POINT = "invoices/";
+        const string END_POINT = "invoices/";
         /// <summary>
         /// Customer's ID
         /// </summary>
@@ -33,6 +33,14 @@ namespace Rebilly.v2_1
         /// </summary>
         public string issuedTime = null;
         /// <summary>
+        /// Invoice's billing contact
+        /// </summary>
+        public string billingContact = null;
+        /// <summary>
+        /// Invoice delivery contact
+        /// </summary>
+        public string deliveryContact = null;
+        /// <summary>
         /// Invoice's ID
         /// </summary>
         private string id = null;
@@ -43,7 +51,7 @@ namespace Rebilly.v2_1
         /// <param name="id"></param>
         public Invoice(string id = null)
         {
-            if (!String.IsNullOrEmpty(id)) 
+            if (!String.IsNullOrEmpty(id))
             {
                 this.id = id;
             }
@@ -158,7 +166,7 @@ namespace Rebilly.v2_1
         public RebillyResponse voidInvoice()
         {
             this.setApiController(END_POINT + this.id + "/void/");
-            
+
             return this.sendPostRequest(null);
         }
 

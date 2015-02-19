@@ -11,28 +11,51 @@ namespace Rebilly.v2_1
 {
     public class Contact : RebillyRequest
     {
-        const string END_POINT = "contacts/";
-        /** @var  string $firstName */
-        public string firstName = null;
-        /** @var  string $lastName */
-        public string lastName = null;
-        /** @var  string $organization */
-        public string organization = null;
-        /** @var  string $address */
-        public string address = null;
-        /** @var  string $address2 */
-        public string address2 = null;
-        /** @var  string $city */
-        public string city = null;
-        /** @var  string $region */
-        public string region = null;
-        /** @var  string $country */
-        public string country = null;
-        /** @var  string $phoneNumber */
-        public string phoneNumber = null;
-        /** @var  string $postalCode */
-        public string postalCode = null;
+        const string CONTACT_END_POINT = "contacts/";
 
+        /// <summary>
+        /// firstName
+        /// </summary>
+        public string firstName = null;
+        /// <summary>
+        /// lastName
+        /// </summary>
+        public string lastName = null;
+        /// <summary>
+        /// organization
+        /// </summary>
+        public string organization = null;
+        /// <summary>
+        /// address
+        /// </summary>
+        public string address = null;
+        /// <summary>
+        /// address2
+        /// </summary>
+        public string address2 = null;
+        /// <summary>
+        /// city
+        /// </summary>
+        public string city = null;
+        /// <summary>
+        /// region
+        /// </summary>
+        public string region = null;
+        /// <summary>
+        /// country
+        /// </summary>
+        public string country = null;
+        /// <summary>
+        /// phoneNumber
+        /// </summary>
+        public string phoneNumber = null;
+        /// <summary>
+        /// postalCode
+        /// </summary>
+        public string postalCode = null;
+        /// <summary>
+        /// Contact's ID
+        /// </summary>
         private string id = null;
         
         /// <summary>
@@ -46,7 +69,7 @@ namespace Rebilly.v2_1
                 this.id = id;
             }
             this.setApiVersion("v2.1");
-            this.setApiController(END_POINT);
+            this.setApiController(CONTACT_END_POINT);
         }
 
         /// <summary>
@@ -59,11 +82,11 @@ namespace Rebilly.v2_1
         ///     contact.setApiKey("your api key");
         ///     contact.setEnvironment(RebillyRequest.ENV_SANDBOX);
         ///     
-        ///     contact.firstName = 'John';
-        ///     contact.lastName = 'Doe';
-        ///     contact.organization = 'Test Org';
-        ///     contact.address = '2020 Rue test';
-        ///     contact.city = 'City';
+        ///     contact.firstName = "John";
+        ///     contact.lastName = "Doe";
+        ///     contact.organization = "Test Org";
+        ///     contact.address = "2020 Rue test";
+        ///     contact.city = "City";
         ///     
         ///     RebillyResponse response = contact.create();
         ///     if (response.statusCode == HttpStatusCode.Created)
@@ -80,6 +103,35 @@ namespace Rebilly.v2_1
         }
 
         /// <summary>
+        /// Create a new contact with ID
+        /// </summary>
+        /// <returns>RebillyResponse</returns>
+        /// <example>
+        /// <code>
+        ///     Rebilly.v2_1.Contact contact = new Rebilly.v2_1.Contact("contactId");
+        ///     contact.setApiKey("your api key");
+        ///     contact.setEnvironment(RebillyRequest.ENV_SANDBOX);
+        ///     
+        ///     RebillyResponse response = contact.update();
+        ///     if (response.statusCode == HttpStatusCode.Created)
+        ///     {
+        ///         // Successfully created
+        ///     }
+        /// </code>
+        /// </example>
+        public RebillyResponse update()
+        {
+            if (String.IsNullOrEmpty(this.id))
+            {
+                throw new Exception("contact id cannot be empty.");
+            }
+            this.setApiController(CONTACT_END_POINT + this.id);
+            string data = this.buildRequest(this);
+
+            return this.sendPutRequest(data);
+        }
+
+        /// <summary>
         /// Get a contact
         /// </summary>
         /// <returns>RebillyResponse</returns>
@@ -92,7 +144,7 @@ namespace Rebilly.v2_1
         ///     RebillyResponse response = contact.retrieve();
         ///     if (response.statusCode == HttpStatusCode.OK)
         ///     {
-        ///         // Successfully created
+        ///         // Success
         ///     }
         /// </code>
         /// </example>
@@ -102,8 +154,30 @@ namespace Rebilly.v2_1
             {
                 throw new Exception("contact id cannot be empty.");
             }
-            this.setApiController(END_POINT + this.id);
+            this.setApiController(CONTACT_END_POINT + this.id);
 
+            return this.sendGetRequest();
+        }
+
+        /// <summary>
+        /// Get a contact
+        /// </summary>
+        /// <returns>RebillyResponse</returns>
+        /// <example>
+        /// <code>
+        ///     Rebilly.v2_1.Contact contact = new Rebilly.v2_1.Contact();
+        ///     contact.setApiKey("your api key");
+        ///     contact.setEnvironment(RebillyRequest.ENV_SANDBOX);
+        ///     
+        ///     RebillyResponse response = contact.listAll();
+        ///     if (response.statusCode == HttpStatusCode.OK)
+        ///     {
+        ///         // Success
+        ///     }
+        /// </code>
+        /// </example>
+        public RebillyResponse listAll()
+        {
             return this.sendGetRequest();
         }
 

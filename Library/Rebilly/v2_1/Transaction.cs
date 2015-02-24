@@ -12,9 +12,13 @@ namespace Rebilly.v2_1
     public class Transaction : RebillyRequest
     {
         /// <summary>
+        /// API customer's endpoint
+        /// </summary>
+        const string CUSTOMER_END_POINT = "customers/";
+        /// <summary>
         /// API transaction's endpoint
         /// </summary>
-        const string END_POINT = "transactions/";
+        const string TRANSACTION_END_POINT = "transactions/";
         /// <summary>
         /// Transaction's amount
         /// </summary>
@@ -23,18 +27,26 @@ namespace Rebilly.v2_1
         /// Transaction's ID
         /// </summary>
         private string id = null;
+        /// <summary>
+        /// Customer's ID
+        /// </summary>
+        private string customerId = null;
 
         /// <summary>
         /// Set api version and endpoint
         /// </summary>
         /// <param name="id"></param>
-        public Transaction(string id = null)
+        public Transaction(string id = null, string customerId = null)
         {
             if (!String.IsNullOrEmpty(id))
             {
                 this.id = id;
             }
-            this.setApiController(END_POINT);
+            if (!String.IsNullOrEmpty(customerId))
+            {
+                this.customerId = customerId;
+            }
+            this.setApiController(TRANSACTION_END_POINT);
             this.setApiVersion("v2.1");
         }
 
@@ -60,9 +72,9 @@ namespace Rebilly.v2_1
         {
             if (String.IsNullOrEmpty(this.id))
             {
-                throw new Exception("transaction id cannot be empty.");
+                throw new Exception("Transaction id cannot be empty.");
             }
-            this.setApiController(END_POINT + this.id + "/refund/");
+            this.setApiController(TRANSACTION_END_POINT + this.id + "/refund/");
             string data = this.buildRequest(this);
 
             return this.sendPostRequest(data);
@@ -87,7 +99,12 @@ namespace Rebilly.v2_1
         /// </example>
         public RebillyResponse retrieve()
         {
-            this.setApiController(END_POINT + this.id);
+            if (String.IsNullOrEmpty(this.id))
+            {
+                throw new Exception("Transaction ID cannot be empty.");
+            }
+            this.setApiController(TRANSACTION_END_POINT + this.id);
+
             return this.sendGetRequest();
         }
 
@@ -110,6 +127,34 @@ namespace Rebilly.v2_1
         /// </example>
         public RebillyResponse listAll()
         {
+            return this.sendGetRequest();
+        }
+
+        /// <summary>
+        /// List all transactions per customer
+        /// </summary>
+        /// <returns>RebillyResponse</returns>
+        /// <example>
+        /// <code>
+        ///     Rebilly.v2_1.Transaction transaction = new Rebilly.v2_1.Transaction(null, "customerId");
+        ///     transaction.setApiKey("your api key");
+        ///     transaction.setEnvironment(RebillyRequest.ENV_SANDBOX);
+        ///     
+        ///     RebillyResponse response = transaction.retrieveByCustomer();
+        ///     if (response.statusCode == HttpStatusCode.OK)
+        ///     {
+        ///         // see response
+        ///     }
+        /// </code>
+        /// </example>
+        public RebillyResponse retrieveByCustomer()
+        {
+            if (String.IsNullOrEmpty(this.customerId))
+            {
+                throw new Exception("Customer ID cannot be empty.");
+            }
+            this.setApiController(CUSTOMER_END_POINT + this.customerId + '/' + TRANSACTION_END_POINT);
+
             return this.sendGetRequest();
         }
 

@@ -29,7 +29,7 @@ namespace Rebilly.v2_1
         /// <summary>
         /// Contact's ID
         /// </summary>
-        public string contact = null;
+        public string billingContact = null;
         /// <summary>
         /// CVV
         /// </summary>

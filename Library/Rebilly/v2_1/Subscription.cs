@@ -42,9 +42,9 @@ namespace Rebilly.v2_1
         /// </summary>
         public string paymentCard = null;
         /// <summary>
-        /// delivery address's ID
+        /// delivery contact's ID
         /// </summary>
-        public string deliveryAddress = null;
+        public string deliveryContact = null;
         /// <summary>
         /// quantity
         /// </summary>
@@ -94,7 +94,7 @@ namespace Rebilly.v2_1
         ///     subscription.plan = "54be26d01294a";
         ///     subscription.website = "N4FTS";
         ///     subscription.paymentCard = "card123ABC";
-        ///     subscription.deliveryAddress = "address123ABC";
+        ///     subscription.deliveryContact = "address123ABC";
         ///     subscription.quantity = 1;
         ///
         ///     RebillyResponse response = subscription.create();
@@ -120,7 +120,7 @@ namespace Rebilly.v2_1
         ///     subscription.setApiKey("apiKey");
         ///     subscription.setEnvironment(RebillyRequest.ENV_SANDBOX);
         ///     subscription.renewalTime = "2015-01-01 00:00:00";
-        ///     subscription.deliveryAddress = "address123ABC";
+        ///     subscription.deliveryContact = "address123ABC";
         ///     subscription.quantity = 1;
         ///
         ///     RebillyResponse response = subscription.update();

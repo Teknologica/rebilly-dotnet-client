@@ -15,63 +15,63 @@ namespace Rebilly.v2_1
         /// <summary>
         /// pan Primary Account Number
         /// </summary>
-        public string pan;
+        public string pan = null;
         /// <summary>
         /// expMonth
         /// </summary>
-        public string expMonth;
+        public string expMonth = null;
         /// <summary>
         /// expYear
         /// </summary>
-        public string expYear;
+        public string expYear = null;
         /// <summary>
         /// cvv
         /// </summary>
-        public string cvv;
+        public string cvv = null;
         /// <summary>
         /// firstName
         /// </summary>
-        public string firstName;
+        public string firstName = null;
         /// <summary>
         /// lastName
         /// </summary>
-        public string lastName;
+        public string lastName = null;
         /// <summary>
         /// address
         /// </summary>
-        public string address;
+        public string address = null;
         /// <summary>
         /// address2
         /// </summary>
-        public string address2;
+        public string address2 = null;
         /// <summary>
         /// city
         /// </summary>
-        public string city;
+        public string city = null;
         /// <summary>
         /// region
         /// </summary>
-        public string region;
+        public string region = null;
         /// <summary>
         /// country - two letter code
         /// </summary>
-        public string country;
+        public string country = null;
         /// <summary>
         /// phoneNumber
         /// </summary>
-        public string phoneNumber;
+        public string phoneNumber = null;
         /// <summary>
         /// postalCode
         /// </summary>
-        public string postalCode;
+        public string postalCode = null;
         /// <summary>
         /// fingerprint
         /// </summary>
-        public string fingerprint;
+        public string fingerprint = null;
         /// <summary>
         /// Token's id
         /// </summary>
-        private string id;
+        private string id = null;
 
         /// <summary>
         /// Set api version and endpoint

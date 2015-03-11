@@ -64,6 +64,7 @@
     <Compile Include="v2_1\Blacklist.cs" />
     <Compile Include="v2_1\Contact.cs" />
     <Compile Include="v2_1\Customer.cs" />
+    <Compile Include="v2_1\Dispute.cs" />
     <Compile Include="v2_1\Invoice.cs" />
     <Compile Include="v2_1\InvoiceItem.cs" />
     <Compile Include="v2_1\Layout.cs" />

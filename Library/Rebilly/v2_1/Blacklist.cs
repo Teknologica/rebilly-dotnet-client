@@ -53,7 +53,7 @@ namespace Rebilly.v2_1
         ///     blacklist.setApiKey("your api key");
         ///     blacklist.setEnvironment(RebillyRequest.ENV_SANDBOX);
         ///     blacklist.type = Rebilly.v2_1.Blacklist.TYPE_EMAIL;
-        ///     Dictionary<string, string> items = new Dictionary<string,string>()
+        ///     Dictionary<string, string> items = new Dictionary<string, string>()
         ///     {
         ///         {"value", "example@example.com"},
         ///         {"ttl", "36000"}, // optional
@@ -84,7 +84,7 @@ namespace Rebilly.v2_1
         ///     blacklist.setApiKey("your api key");
         ///     blacklist.setEnvironment(RebillyRequest.ENV_SANDBOX);
         ///     blacklist.type = Rebilly.v2_1.Blacklist.TYPE_EMAIL;
-        ///     Dictionary<string, string> items = new Dictionary<string,string>()
+        ///     Dictionary<string, string> items = new Dictionary<string, string>()
         ///     {
         ///         {"value", "example@example.com"},
         ///     };

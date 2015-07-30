@@ -69,6 +69,7 @@
     <Compile Include="v2_1\InvoiceItem.cs" />
     <Compile Include="v2_1\Layout.cs" />
     <Compile Include="v2_1\LeadSource.cs" />
+    <Compile Include="v2_1\Organization.cs" />
     <Compile Include="v2_1\PaymentCard.cs" />
     <Compile Include="v2_1\Plan.cs" />
     <Compile Include="v2_1\Signature.cs" />

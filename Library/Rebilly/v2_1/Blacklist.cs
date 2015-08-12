@@ -29,16 +29,28 @@ namespace Rebilly.v2_1
         /// </summary>
         public string type = null;
         /// <summary>
-        /// Blacklist's item
+        /// Blacklist's value
         /// </summary>
-        public Dictionary<string, string> items = null;
+        public string value = null;
+        /// <summary>
+        /// Blacklist's ttl time to live
+        /// </summary>
+        public string ttl = null;
+        /// <summary>
+        /// ID
+        /// </summary>
+        private string id;
 
         /// <summary>
         /// constructor
         /// </summary>
         /// <param name="type"></param>
-        public Blacklist()
+        public Blacklist(string id)
         {
+            if (!String.IsNullOrEmpty(id))
+            {
+                this.id = id;
+            }
             this.setApiController(END_POINT);
             this.setApiVersion("v2.1");
         }
@@ -53,13 +65,9 @@ namespace Rebilly.v2_1
         ///     blacklist.setApiKey("your api key");
         ///     blacklist.setEnvironment(RebillyRequest.ENV_SANDBOX);
         ///     blacklist.type = Rebilly.v2_1.Blacklist.TYPE_EMAIL;
-        ///     Dictionary<string, string> items = new Dictionary<string, string>()
-        ///     {
-        ///         {"value", "example@example.com"},
-        ///         {"ttl", "36000"}, // optional
-        ///     };
-        /// 
-        ///     blacklist.items = items;
+        ///     blacklist.value = "example@example.com";
+        ///     blacklist.ttl = "3600";
+        ///
         ///     RebillyResponse response = blacklist.create();
         ///     if (response.statusCode == HttpStatusCode.Created)
         ///     {
@@ -71,7 +79,16 @@ namespace Rebilly.v2_1
         {
             string data = this.buildRequest(this);
 
-            return this.sendPostRequest(data);
+            if (String.IsNullOrEmpty(this.id))
+            {
+                return this.sendPostRequest(data);
+            }
+            else
+            {
+                this.setApiController(END_POINT + this.id);
+                return this.sendPutRequest(data);
+            }
+            
         }
 
         /// <summary>
@@ -80,16 +97,10 @@ namespace Rebilly.v2_1
         /// <returns>RebillyResponse</returns>
         /// <example>
         /// <code>
-        ///     Rebilly.v2_1.Blacklist blacklist = new Rebilly.v2_1.Blacklist();
+        ///     Rebilly.v2_1.Blacklist blacklist = new Rebilly.v2_1.Blacklist("blacklistId");
         ///     blacklist.setApiKey("your api key");
         ///     blacklist.setEnvironment(RebillyRequest.ENV_SANDBOX);
-        ///     blacklist.type = Rebilly.v2_1.Blacklist.TYPE_EMAIL;
-        ///     Dictionary<string, string> items = new Dictionary<string, string>()
-        ///     {
-        ///         {"value", "example@example.com"},
-        ///     };
-        /// 
-        ///     blacklist.items = items;
+        ///
         ///     RebillyResponse response = blacklist.delete();
         ///     if (response.statusCode == HttpStatusCode.NoContent)
         ///     {
@@ -99,9 +110,42 @@ namespace Rebilly.v2_1
         /// </example>
         public RebillyResponse delete()
         {
+            if (String.IsNullOrEmpty(this.id))
+            {
+                throw new Exception("blacklist id cannot be empty.");
+            }
+            this.setApiController(END_POINT + this.id);
             string data = this.buildRequest(this);
 
             return this.sendDeleteRequest(data);
+        }
+
+        /// <summary>
+        /// Delete a blacklist
+        /// </summary>
+        /// <returns>RebillyResponse</returns>
+        /// <example>
+        /// <code>
+        ///     Rebilly.v2_1.Blacklist blacklist = new Rebilly.v2_1.Blacklist("blacklistId");
+        ///     blacklist.setApiKey("your api key");
+        ///     blacklist.setEnvironment(RebillyRequest.ENV_SANDBOX);
+        ///
+        ///     RebillyResponse response = blacklist.retrive();
+        ///     if (response.statusCode == HttpStatusCode.OK)
+        ///     {
+        ///         // Success
+        ///     }
+        /// </code>
+        /// </example>
+        public RebillyResponse retrive()
+        {
+            if (String.IsNullOrEmpty(this.id))
+            {
+                throw new Exception("blacklist id cannot be empty.");
+            }
+            this.setApiController(END_POINT + this.id);
+
+            return this.sendGetRequest();
         }
 
         /// <summary>
@@ -113,9 +157,8 @@ namespace Rebilly.v2_1
         ///     Rebilly.v2_1.Blacklist blacklist = new Rebilly.v2_1.Blacklist();
         ///     blacklist.setApiKey("your api key");
         ///     blacklist.setEnvironment(RebillyRequest.ENV_SANDBOX);
-        ///     blacklist.type = Rebilly.v2_1.Blacklist.TYPE_EMAIL;
         ///    
-        ///     RebillyResponse response = blacklist.delete();
+        ///     RebillyResponse response = blacklist.listAll();
         ///     if (response.statusCode == HttpStatusCode.OK)
         ///     {
         ///         // see response
@@ -124,7 +167,7 @@ namespace Rebilly.v2_1
         /// </example>
         public RebillyResponse listAll()
         {
-            this.setApiController(END_POINT + this.type);
+            this.setApiController(END_POINT);
 
             return this.sendGetRequest();
         }

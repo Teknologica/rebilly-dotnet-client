@@ -32,6 +32,10 @@ namespace Rebilly
         /// string description
         /// </summary>
         public string description = null;
+		/// <summary>
+        /// string richDescription
+        /// </summary>
+        public string richDescription = null;
         /// <summary>
         /// string recurringAmount
         /// </summary>
